@@ -1,199 +1,290 @@
-## MERN Ecommerce: A Seamless Shopping Experience Powered by the MERN Stack, Redux Toolkit, and Material UI
+# MedQuick – Medicine & Emergency Essentials Delivery Platform
 
-### Also try -> [https://mernchat.in](https://mernchat.in)
-### ```Note✨: I have another amazing project on``` [end-to-end-encrypted-chat-application](https://github.com/RishiBakshii/mern-chat) ```using Next.js, Prisma, Postgresql, Express, Socket.io.```
+## Project Overview
 
-**MERN Ecommerce** is a full-stack application designed to transform your online shopping experience. Built with the MERN stack (MongoDB, Express.js, React, Node.js), it leverages Redux Toolkit for efficient state management and Material UI for a sleek, user-friendly interface. This project offers a robust platform for both users and admins, packed with essential features for a seamless experience.
+MedQuick is a MERN stack web application designed to provide users with a fast, reliable, and user-friendly platform for purchasing medicines and emergency essentials online. The platform enables customers to browse products, manage prescriptions, place orders, and track deliveries, while administrators can efficiently manage inventory, categories, and customer orders.
 
-![ecommerce-homepage](https://github.com/RishiBakshii/mern-ecommerce/blob/main/frontend/src/assets/images/front.png?raw=true)
-<!-- ![ecommerce-banner](https://github.com/RishiBakshii/mern-ecommerce/blob/main/frontend/src/assets/images/banner4.jpg?raw=true) -->
-![ecommerce-banner](https://github.com/RishiBakshii/mern-ecommerce/blob/main/frontend/src/assets/images/banner3.jpg?raw=true)
+---
 
+# Problem it Solves
 
-# **Features**
+Traditional medicine purchasing can be time-consuming, especially during emergencies. Many users face difficulties in locating nearby pharmacies with the required medicines or ordering essential healthcare products quickly.
 
-### **User:**
-- **Product Reviews:**
-  - Write, edit, and delete reviews.
-  - Instant updates on ratings and star percentages.
-  
-- **Wishlist:**
-  - Add, remove, and annotate products with personalized notes.
-  
-- **Order Management:**
-  - Create new orders and view order history.
-  
-- **Profile Management:**
-  - Manage email, username, and multiple addresses.
-  
-- **Shopping Cart:**
-  - Add products, adjust quantities, and view subtotals.
+MedQuick addresses these issues by providing:
 
-### **Admin:**
-- **Product Management:**
-  - Add, edit, delete, and soft-delete products.
-  - Manage product attributes like name and stock.
-  
-- **Order Management:**
-  - View and update order details and status.
+* A centralized online medicine store
+* Easy product discovery
+* Secure order placement
+* Efficient inventory management
+* Prescription-based medicine support
 
-### **Security & User Experience:**
-- **Secure Authentication:**
-  - Login, signup, OTP verification, password reset, and logout.
+---
 
-- **Intuitive Interface:**
-  - Powered by Material UI for a visually appealing and user-friendly experience.
+# Target Users (Personas)
 
-### **Scalability:**
-- **Built for Growth:**
-  - Scalable architecture to handle increasing user demands.
+### Customer
 
-## Branching Strategy
+* Purchase medicines and healthcare products
+* Search and filter products
+* Manage cart and orders
+* Track deliveries
 
-This project follows the **GitHub Flow** branching strategy to support collaborative development.
+### Administrator
 
-### Branches Used
+* Manage products
+* Manage inventory
+* Process customer orders
+* Monitor platform activity
 
-* **main** – Contains the stable and production-ready version of the project.
-* **feature-suriyan** – Development branch for Suriyan's assigned features and updates.
-* **feature-sairam** – Development branch for Sairam's assigned features and updates.
+---
+
+# Vision Statement
+
+To provide a reliable, accessible, and efficient digital healthcare marketplace that simplifies medicine purchasing while ensuring a seamless experience for both customers and administrators.
+
+---
+
+# Key Features / Goals
+
+* User Registration & Login
+* Product Browsing
+* Product Search & Filtering
+* Shopping Cart
+* Wishlist
+* Secure Checkout
+* Order Management
+* Prescription Verification (Placeholder)
+* Customer Dashboard
+* Admin Dashboard
+* Inventory Management
+* Product Reviews
+
+---
+
+# Success Metrics
+
+The project will be considered successful if it achieves:
+
+* Successful user authentication
+* Accurate product management
+* Smooth shopping cart functionality
+* Successful order placement
+* Responsive user interface
+* Efficient inventory management
+* Secure API communication
+* Stable deployment
+
+---
+
+# Assumptions & Constraints
+
+## Assumptions
+
+* Users have internet access.
+* MongoDB Atlas remains available.
+* Customers provide accurate account information.
+* Prescription verification is implemented as a placeholder for this phase.
+
+## Constraints
+
+* Developed using the MERN stack.
+* Docker used for local development.
+* Limited to educational purposes.
+* Uses free-tier deployment services (Vercel, Render, MongoDB Atlas).
+
+---
+
+# Technology Stack
+
+## Frontend
+
+* React.js
+* Material UI
+* Redux Toolkit
+* Axios
+
+## Backend
+
+* Node.js
+* Express.js
+
+## Database
+
+* MongoDB Atlas
+* Mongoose
+
+## Deployment
+
+* Vercel
+* Render
+
+## Containerization
+
+* Docker
+
+---
+
+# Folder Structure
+
+```text
+MedQuick
+│
+├── frontend
+│   ├── public
+│   ├── src
+│   └── package.json
+│
+├── backend
+│   ├── controllers
+│   ├── models
+│   ├── routes
+│   ├── middleware
+│   ├── config
+│   └── package.json
+│
+├── docker-compose.yml
+├── README.md
+└── .gitignore
+```
+
+---
+
+# Branching Strategy
+
+This project follows the **GitHub Flow** branching strategy.
+
+## Branches
+
+* **main** – Stable production-ready branch.
+* **feature-suriyan** – Development branch for Suriyan.
+* **feature-arun** – Development branch for Arun.
+* **feature-sairam** – Development branch for Sairam.
 
 ### Workflow
 
-1. Each team member creates and works on their own feature branch.
-2. Changes are committed and pushed to the respective feature branch.
-3. After completing a feature, a Pull Request is created to merge the branch into the **main** branch.
-4. The changes are reviewed and tested before merging.
-5. The **main** branch always contains the latest stable version of the project.
+1. Create a feature branch from **main**.
+2. Develop features independently.
+3. Commit and push changes.
+4. Create a Pull Request.
+5. Review and merge into **main**.
 
-This workflow allows multiple team members to work simultaneously without affecting the stability of the main branch and follows the recommended GitHub Flow development model.
+---
 
+# Quick Start – Local Development
 
+## Prerequisites
 
-# **Project Setup**
+* Git
+* Node.js
+* npm
+* Docker Desktop
 
-### Prerequisites
-- Node.js ( version v21.1.0 or later )
-- MongoDB installed and running locally
-
-### Clone the project
-
-```bash
-  git clone https://github.com/RishiBakshii/mern-ecommerce.git
-```
-
-### Navigate to the project directory
+## Clone Repository
 
 ```bash
-  cd mern-ecommerce
+git clone <repository-url>
+cd MedQuick
 ```
 
-### Install dependencies for frontend and backend separately
-**Tip:** To efficiently install dependencies for both frontend and backend simultaneously, use split terminals.
-
-Install frontend dependencies
-```bash
-cd frontend
-npm install
-```
-
-Install backend dependencies
+## Build Docker Images
 
 ```bash
-cd backend
-npm install
+docker build -t medquick .
 ```
 
+## Run with Docker
 
-### Environment Variables
-**Backend**
-- Create a `.env` file in the `backend` directory.
-- Add the following variables with appropriate values
 ```bash
-# Database connection string
-MONGO_URI="mongodb://localhost:27017/your-database-name"
-
-# Frontend URL (adjust if needed)
-ORIGIN="http://localhost:3000"
-
-# Email credentials for sending password resets and OTPs
-EMAIL="your-email@example.com"
-PASSWORD="your-email-password"
-
-# Token and cookie expiration settings
-LOGIN_TOKEN_EXPIRATION="30d"  # Days
-OTP_EXPIRATION_TIME="120000"  # Milliseconds
-PASSWORD_RESET_TOKEN_EXPIRATION="2m"  # Minutes
-COOKIE_EXPIRATION_DAYS="30"    # Days
-
-# Secret key for jwt security
-SECRET_KEY="your-secret-key"
-
-# Environment (production/development)
-PRODUCTION="false" # Initially set to false for development
+docker compose up
 ```
 
-**Frontend**
-- Create a `.env` file in the `frontend` directory
-- Add the following variable:
+or
+
 ```bash
-# Backend URL (adjust if needed)
-REACT_APP_BASE_URL="http://localhost:8000" 
+docker-compose up
 ```
 
-**Important**
-- Replace all placeholders (e.g., your_database_name, your_email) with your actual values.
-- Exclude the `.env` file from version control to protect sensitive information.
+The application will be available at:
 
-### Data seeding
-- **Get started quickly with pre-populated data**: Populate your database with sample users, products, reviews, and carts, enabling you to test functionalities without manual data entry.
-
-**Steps**:
-- Open a new terminal window.
-- Navigate to the `backend` directory: `cd backend`
-- Run the seeding script: `npm run seed` ( This script executes the `seed.js` file within the `seed` subdirectory equivalent to running `node seed/seed.js` )
-### Running Development Servers
-
-**Important:**
-
-- **Separate terminals**: Run the commands in separate terminal windows or use `split terminal` to avoid conflicts.
-- **Nodemon required**: Ensure you have `nodemon` installed globally to run the backend development servers using `npm run dev`. You can install it globally using `npm install -g nodemon`.
-
-#### Start the backend server
-- Navigate to the `backend` directory: `cd backend`
-- Start the server: `npm run dev` (or npm start)
-- You should see a message indicating the server is running, usually on port 8000.
-     
-#### Start the frontend server:
-- Navigate to the `frontend` directory: `cd frontend`
-- Start the server: `npm start`
-- You should see a message indicating the server is running, usually on port 3000.
-
-### Login with demo account (Optional)
-- After successfully seeding the database, you can now explore the application's functionalities using pre-populated sample data.
-- here are the `login credentials`
-```bash
-  email: demo@gmail.com
-  pass: helloWorld@123
+```
+http://localhost:3000
 ```
 
-- **Please Note**: While the demo account provides a convenient way to explore many features, it has some limitations:
-    - **Password Reset and OTP Verification**: Due to security reasons, the demo account uses a non-real email address. Therefore, password reset and OTP verification functionalities are not available for this account.
+---
 
-    **What this means**:
-    - You cannot request a password reset or receive verification codes on the demo email address.
-    - To test password reset and OTP verification flows, you need to create a genuine account with a valid email address.
+# Local Development Tools
 
-    **What to do?**
-    - If you're primarily interested in exploring other functionalities like wishlist, cart, and order history, the demo account is sufficient.
-    - To test password reset and OTP verification, create a personal account with a valid email address.
-### Accessing the Application
-Once both servers are running, you can access them at the following URL's:
-- Backend: http://localhost:8000
-- Frontend: http://localhost:3000
+* Visual Studio Code
+* Git
+* GitHub
+* Docker Desktop
+* Node.js
+* npm
+* MongoDB Atlas
+* Postman
+* Draw.io
+* Figma
 
-## **Bonus**
-Don't forget to star the repository and share your feedback!✨
+---
 
-## Authors
-- [@RishiBakshii](https://github.com/RishiBakshii)
+# Repository
+
+GitHub Repository:
+
+**<Add your GitHub repository link here>**
+
+---
+
+# Screenshots
+
+## GitHub Repository
+
+*(Insert screenshot of repository homepage.)*
+
+---
+
+## Branches
+
+*(Insert screenshot showing main, feature-suriyan, feature-arun, and feature-sairam branches.)*
+
+---
+
+## Docker Build
+
+*(Insert screenshot of successful `docker build`.)*
+
+---
+
+## Docker Compose
+
+*(Insert screenshot of successful `docker compose up`.)*
+
+---
+
+## Application Running
+
+*(Insert screenshot of the application running on `http://localhost:3000`.)*
+
+---
+
+## README Preview
+
+*(Insert screenshot of the README displayed on GitHub.)*
+
+---
+
+## GitHub Project Board
+
+The project uses a GitHub Project (Kanban Board) to manage development tasks.
+
+Workflow:
+
+Backlog → To Do → In Progress → Testing → Done
+
+All user stories were created as GitHub Issues and managed through the GitHub Project board following an Agile Kanban workflow.
+
+
+# Contributors
+
+* Suriyan
+* Sairam
