@@ -4,6 +4,20 @@ This document captures the primary user stories for **MedQuick – Medicine & Em
 
 ---
 
+## 🐳 Development Setup
+
+The project includes a complete Docker setup for local development. To get started:
+
+```bash
+cp .env.example .env
+docker-compose up --build
+# Open http://localhost:3000
+```
+
+For detailed Docker setup instructions, see [DOCKER_SETUP.md](./DOCKER_SETUP.md)
+
+---
+
 # Authentication Module
 
 ## US-01 – Customer Registration

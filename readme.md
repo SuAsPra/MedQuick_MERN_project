@@ -113,14 +113,34 @@ The project will be considered successful if it achieves:
 * MongoDB Atlas
 * Mongoose
 
-## Deployment
-
-* Vercel
-* Render
-
 ## Containerization
 
-* Docker
+* Docker - Containerizes frontend, backend, and MongoDB
+* Docker Compose - Orchestrates multi-container setup
+* Hot reload enabled for development
+* Volume-based persistence for database
+
+---
+
+# 🐳 Docker Support
+
+**MedQuick is fully containerized for easy local development!**
+
+The project includes complete Docker setup with:
+- ✅ Separate Dockerfiles for frontend and backend
+- ✅ docker-compose.yml orchestrating all services (MongoDB, Backend, Frontend)
+- ✅ Hot reload enabled for both frontend and backend
+- ✅ Database persistence across restarts
+- ✅ Easy environment configuration via .env
+
+**Get started in 3 commands:**
+```bash
+cp .env.example .env
+docker-compose up --build
+# Open http://localhost:3000
+```
+
+For full Docker documentation, see [**DOCKER_SETUP.md**](./DOCKER_SETUP.md)
 
 ---
 
@@ -129,21 +149,36 @@ The project will be considered successful if it achieves:
 ```text
 MedQuick
 │
-├── frontend
+├── frontend                    # React frontend application
 │   ├── public
 │   ├── src
+│   ├── Dockerfile              # Frontend container image
+│   ├── .dockerignore           # Docker build exclusions
 │   └── package.json
 │
-├── backend
+├── backend                     # Node.js backend API
 │   ├── controllers
 │   ├── models
 │   ├── routes
 │   ├── middleware
-│   ├── config
+│   ├── database
+│   ├── seed
+│   ├── utils
+│   ├── Dockerfile              # Backend container image
+│   ├── .dockerignore           # Docker build exclusions
+│   ├── index.js
 │   └── package.json
 │
-├── docker-compose.yml
-├── README.md
+├── docker-compose.yml          # Docker Compose configuration
+├── .env.example                # Environment variables template
+├── README.md                   # Project overview
+├── DOCKER_SETUP.md             # Detailed Docker guide
+├── requirements.md             # Software requirements
+├── MOSCOW.md                   # Project prioritization
+├── to_implement.md             # Implementation tasks
+├── user_stories.md             # User stories
+├── vision_document.md          # Project vision
+├── MedQuick_Project.mdj        # Project model
 └── .gitignore
 ```
 
@@ -175,28 +210,132 @@ This project follows the **GitHub Flow** branching strategy.
 ## Prerequisites
 
 * Git
-* Node.js
-* npm
-* Docker Desktop
+* Docker Desktop (includes Docker & Docker Compose)
+* (Optional) Node.js 18+ and npm (for local development without Docker)
 
 ## Clone Repository
 
 ```bash
 git clone <repository-url>
-cd MedQuick
+cd medquick_mern
 ```
 
-## Build Docker Images
+## Setup with Docker (Recommended)
+
+Docker provides the easiest setup with no local Node.js installation needed.
+
+### Step 1: Create Environment File
 
 ```bash
-docker build -t medquick .
+# Copy the example environment file
+cp .env.example .env
+
+# Edit .env if needed (defaults work for local development)
 ```
 
-## Run with Docker
+### Step 2: Build and Run
 
 ```bash
-docker compose up
+# Build images and start all services
+docker-compose up --build
+
+# Services will start:
+# - Frontend at http://localhost:3000
+# - Backend API at http://localhost:8080
+# - MongoDB at localhost:27017
 ```
+
+### Step 3: Stop Services
+
+```bash
+# Stop all services (keep data)
+docker-compose down
+
+# Stop and remove everything including data
+docker-compose down -v
+```
+
+## Important Docker Notes
+
+✅ **Hot Reload Enabled**
+- Backend auto-restarts when code changes (nodemon)
+- Frontend auto-refreshes on code changes (React dev server)
+
+✅ **Database Persistence**
+- MongoDB data persists in volume even after `docker-compose down`
+
+✅ **Inter-service Communication**
+- Backend connects to MongoDB automatically
+- Frontend connects to backend automatically
+
+## Detailed Docker Setup Guide
+
+For comprehensive Docker documentation including:
+- How each file works
+- Detailed service configuration
+- 20+ commands reference
+- Troubleshooting guide
+- Production conversion steps
+
+See [**DOCKER_SETUP.md**](./DOCKER_SETUP.md)
+
+## Alternative: Local Development (Without Docker)
+
+If you prefer local development without Docker:
+
+### Prerequisites
+* Node.js 18+
+* npm or yarn
+* MongoDB (local or Atlas URI)
+
+### Steps
+
+```bash
+# Backend setup
+cd backend
+npm install
+# Create .env file with:
+# MONGO_URI=mongodb://localhost:27017/medquick
+# ORIGIN=http://localhost:3000
+# JWT_SECRET=your-secret-key
+# EMAIL_HOST=smtp.gmail.com
+# EMAIL_PORT=587
+# EMAIL_USER=your-email@gmail.com
+# EMAIL_PASSWORD=your-password
+npm run dev
+
+# Frontend setup (new terminal)
+cd frontend
+npm install
+# Create .env file with:
+# REACT_APP_API_BASE_URL=http://localhost:8080
+npm start
+```
+
+## Database Seeding
+
+To populate the database with sample healthcare products and categories:
+
+```bash
+# With Docker
+docker-compose exec backend npm run seed
+
+# Without Docker (from backend directory)
+npm run seed
+```
+
+## Useful Commands
+
+| Command | Purpose |
+|---------|---------|
+| `docker-compose up -d` | Start services in background |
+| `docker-compose ps` | List running containers |
+| `docker-compose logs -f` | View real-time logs |
+| `docker-compose logs -f backend` | View backend logs only |
+| `docker-compose stop` | Stop all services |
+| `docker-compose down` | Stop and remove containers |
+| `docker-compose down -v` | Stop and remove everything including data |
+| `docker-compose exec backend sh` | Open shell in backend container |
 
 or
 

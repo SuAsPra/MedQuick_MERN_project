@@ -1,0 +1,88 @@
+# Docker Compose configuration for MedQuick MERN stack
+# Local development setup with hot reload support
+
+version: '3.8'
+
+services:
+  # MongoDB service
+  mongodb:
+    image: mongo:7.0-alpine
+    container_name: medquick-mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USERNAME:-admin}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD:-password}
+      MONGO_INITDB_DATABASE: medquick
+    volumes:
+      - mongodb_data:/data/db
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - medquick-network
+
+  # Backend service (Node.js + Express)
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: medquick-backend
+    ports:
+      - "8080:8080"
+    environment:
+      MONGO_URI: mongodb://${MONGO_USERNAME:-admin}:${MONGO_PASSWORD:-password}@mongodb:27017/medquick?authSource=admin
+      ORIGIN: ${BACKEND_ORIGIN:-http://localhost:3000}
+      NODE_ENV: development
+      JWT_SECRET: ${JWT_SECRET:-your-secret-key-change-in-production}
+      EMAIL_HOST: ${EMAIL_HOST:-smtp.example.com}
+      EMAIL_PORT: ${EMAIL_PORT:-587}
+      EMAIL_USER: ${EMAIL_USER:-your-email@example.com}
+      EMAIL_PASSWORD: ${EMAIL_PASSWORD:-your-email-password}
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    volumes:
+      # Mount the entire backend directory for hot reload
+      - ./backend:/app/backend
+      # Exclude node_modules from mounting to use container's installation
+      - /app/backend/node_modules
+    networks:
+      - medquick-network
+    restart: unless-stopped
+
+  # Frontend service (React)
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: medquick-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      REACT_APP_API_BASE_URL: ${REACT_APP_API_BASE_URL:-http://localhost:8080}
+      DANGEROUSLY_DISABLE_HOST_CHECK: 'true'
+    depends_on:
+      - backend
+    volumes:
+      # Mount the entire frontend directory for hot reload
+      - ./frontend:/app/frontend
+      # Exclude node_modules from mounting to use container's installation
+      - /app/frontend/node_modules
+    networks:
+      - medquick-network
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+
+volumes:
+  # Named volume for MongoDB data persistence
+  mongodb_data:
+    driver: local
+
+networks:
+  # Custom network for inter-service communication
+  medquick-network:
+    driver: bridge
