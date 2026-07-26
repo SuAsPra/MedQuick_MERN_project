@@ -20,6 +20,37 @@ MedQuick addresses these issues by providing:
 
 ---
 
+# Screenshots
+
+## 1. GitHub Repository
+![GitHub Repository](images/image-1.png)
+
+## 2. GitHub Branches
+![GitHub Branches](images/image.png)
+
+## 3. GitHub Project Board (Kanban)
+![GitHub Project Board](images/image-2.png)
+
+## 4. ER Diagram (StarUML)
+![ER Diagram](images/image-3.png)
+
+## 5. Use Case Diagram (StarUML)
+![Use Case Diagram](images/image-4.png)
+
+## 6. Class Diagram (StarUML)
+![Class Diagram](images/image-5.png)
+
+## 7. Architecture Diagram (Draw.io)
+![Architecture Diagram](images/MedQuick_Architecture-1.png)
+
+## 8. Docker Desktop
+![Docker Desktop](images/image-7.png)
+
+## 9. Docker Build & Run (Terminal)
+![Docker Terminal](images/image-6.png)
+
+## 10. Running Web App
+![Web App](image10.png)
 # Target Users (Personas)
 
 ### Customer
@@ -371,44 +402,6 @@ http://localhost:3000
 GitHub Repository:
 
 **<Add your GitHub repository link here>**
-
----
-
-# Screenshots
-
-## GitHub Repository
-
-*(Insert screenshot of repository homepage.)*
-
----
-
-## Branches
-
-*(Insert screenshot showing main, feature-suriyan, feature-arun, and feature-sairam branches.)*
-
----
-
-## Docker Build
-
-*(Insert screenshot of successful `docker build`.)*
-
----
-
-## Docker Compose
-
-*(Insert screenshot of successful `docker compose up`.)*
-
----
-
-## Application Running
-
-*(Insert screenshot of the application running on `http://localhost:3000`.)*
-
----
-
-## README Preview
-
-*(Insert screenshot of the README displayed on GitHub.)*
 
 ---
 

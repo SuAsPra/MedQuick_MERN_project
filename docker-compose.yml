@@ -6,7 +6,7 @@ version: '3.8'
 services:
   # MongoDB service
   mongodb:
-    image: mongo:7.0-alpine
+    image: mongo:7
     container_name: medquick-mongodb
     ports:
       - "27017:27017"
@@ -64,6 +64,9 @@ services:
     environment:
       REACT_APP_API_BASE_URL: ${REACT_APP_API_BASE_URL:-http://localhost:8080}
       DANGEROUSLY_DISABLE_HOST_CHECK: 'true'
+      HOST: 0.0.0.0
+      CHOKIDAR_USEPOLLING: 'true'
+      WATCHPACK_POLLING: 'true'
     depends_on:
       - backend
     volumes:
