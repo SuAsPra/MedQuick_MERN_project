@@ -48,6 +48,9 @@ MedQuick addresses these issues by providing:
 
 ## 9. Docker Build & Run (Terminal)
 ![Docker Terminal](images/image-6.png)
+
+## 10. Running Web App
+![Web App](image10.png)
 # Target Users (Personas)
 
 ### Customer
