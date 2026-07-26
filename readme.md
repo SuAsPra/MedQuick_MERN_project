@@ -48,6 +48,27 @@
 - **Built for Growth:**
   - Scalable architecture to handle increasing user demands.
 
+## Branching Strategy
+
+This project follows the **GitHub Flow** branching strategy to support collaborative development.
+
+### Branches Used
+
+* **main** – Contains the stable and production-ready version of the project.
+* **feature-suriyan** – Development branch for Suriyan's assigned features and updates.
+* **feature-sairam** – Development branch for Sairam's assigned features and updates.
+
+### Workflow
+
+1. Each team member creates and works on their own feature branch.
+2. Changes are committed and pushed to the respective feature branch.
+3. After completing a feature, a Pull Request is created to merge the branch into the **main** branch.
+4. The changes are reviewed and tested before merging.
+5. The **main** branch always contains the latest stable version of the project.
+
+This workflow allows multiple team members to work simultaneously without affecting the stability of the main branch and follows the recommended GitHub Flow development model.
+
+
 
 # **Project Setup**
 
