@@ -20,6 +20,21 @@ MedQuick addresses these issues by providing:
 
 ---
 
+# Screenshots
+Image of Repository -
+![Repository](image-1.png)
+Image of Branches -
+![Branches](image.png)
+Image of Github Board -
+![Kanban Board](image-2.png)
+ER Diagram in StarUML -
+![ER Diagram](image-3.png)
+Use case diagram in StarUML - 
+![Use Cases](image-4.png)
+CLass Diagram in STarUML -
+![Class Diagram](image-5.png)
+
+---
 # Target Users (Personas)
 
 ### Customer
