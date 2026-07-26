@@ -14,6 +14,8 @@ MedQuick is a full-stack MERN web application that enables customers to purchase
 
 The application aims to provide a reliable, scalable, and user-friendly healthcare shopping experience while following modern software engineering principles.
 
+**Development Environment**: The project includes a complete Docker setup for local development with MongoDB, backend API, and frontend server. This ensures consistent development environments across team members and simplifies onboarding. See [DOCKER_SETUP.md](./DOCKER_SETUP.md) for detailed Docker configuration and instructions.
+
 ---
 
 # 2. Functional Requirements
@@ -214,6 +216,14 @@ The application shall:
 ## 3.5 Availability
 
 The system should remain operational during normal usage and support deployment using Docker for consistent execution across development environments.
+
+**Docker Support Requirements:**
+* Application shall be containerized with Docker for local development
+* Separate containers for frontend (React), backend (Node.js), and database (MongoDB)
+* Docker Compose shall orchestrate multi-container setup
+* Hot reload shall be enabled during development for code changes
+* Database persistence shall be maintained across container restarts
+* Environment configuration shall be managed via environment variables
 
 ---
 
