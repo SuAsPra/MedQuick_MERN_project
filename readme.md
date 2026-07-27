@@ -50,7 +50,7 @@ MedQuick addresses these issues by providing:
 ![Docker Terminal](images/image-6.png)
 
 ## 10. Running Web App
-![Web App](image10.png)
+![Web App](images/image10.png)
 # Target Users (Personas)
 
 ### Customer
@@ -223,7 +223,6 @@ This project follows the **GitHub Flow** branching strategy.
 
 * **main** – Stable production-ready branch.
 * **feature-suriyan** – Development branch for Suriyan.
-* **feature-arun** – Development branch for Arun.
 * **feature-sairam** – Development branch for Sairam.
 
 ### Workflow
@@ -401,7 +400,7 @@ http://localhost:3000
 
 GitHub Repository:
 
-**<Add your GitHub repository link here>**
+**https://github.com/SuAsPra/MedQuick_MERN_project**
 
 ---
 
