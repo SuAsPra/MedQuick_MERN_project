@@ -34,6 +34,10 @@ export const fetchProducts=async(filters)=>{
     if(filters.user){
         queryString+=`user=${filters.user}&`
     }
+
+    if(filters.search && filters.search.trim() !== ''){
+        queryString+=`search=${encodeURIComponent(filters.search.trim())}&`
+    }
     
     try {
         const res=await axiosi.get(`/products?${queryString}`)

@@ -14,12 +14,14 @@ import { SHIPPING, TAXES } from '../../../constants'
 import {motion} from 'framer-motion'
 
 
+import { toast } from 'react-toastify'
+
 export const Checkout = () => {
 
     const status=''
     const addresses=useSelector(selectAddresses)
-    const [selectedAddress,setSelectedAddress]=useState(addresses[0])
-    const [selectedPaymentMethod,setSelectedPaymentMethod]=useState('cash')
+    const [selectedAddress,setSelectedAddress]=useState(addresses?.[0] || null)
+    const [selectedPaymentMethod,setSelectedPaymentMethod]=useState('COD')
     const { register, handleSubmit, watch, reset,formState: { errors }} = useForm()
     const dispatch=useDispatch()
     const loggedInUser=useSelector(selectLoggedInUser)
@@ -28,26 +30,33 @@ export const Checkout = () => {
     const cartItems=useSelector(selectCartItems)
     const orderStatus=useSelector(selectOrderStatus)
     const currentOrder=useSelector(selectCurrentOrder)
-    const orderTotal=cartItems.reduce((acc,item)=>(item.product.price*item.quantity)+acc,0)
+    const orderTotal=cartItems ? cartItems.reduce((acc,item)=>(item.product ? (item.product.price*item.quantity) : 0)+acc,0) : 0
     const theme=useTheme()
     const is900=useMediaQuery(theme.breakpoints.down(900))
     const is480=useMediaQuery(theme.breakpoints.down(480))
+
+    useEffect(()=>{
+        if(addresses?.length > 0 && !selectedAddress){
+            setSelectedAddress(addresses[0])
+        }
+    },[addresses, selectedAddress])
     
     useEffect(()=>{
         if(addressStatus==='fulfilled'){
             reset()
+            toast.success("Address added successfully")
         }
         else if(addressStatus==='rejected'){
-            alert('Error adding your address')
+            toast.error('Error adding delivery address')
         }
-    },[addressStatus])
+    },[addressStatus, reset])
 
     useEffect(()=>{
         if(currentOrder && currentOrder?._id){
             dispatch(resetCartByUserIdAsync(loggedInUser?._id))
             navigate(`/order-success/${currentOrder?._id}`)
         }
-    },[currentOrder])
+    },[currentOrder, dispatch, loggedInUser, navigate])
     
     const handleAddAddress=(data)=>{
         const address={...data,user:loggedInUser._id}
@@ -55,7 +64,18 @@ export const Checkout = () => {
     }
 
     const handleCreateOrder=()=>{
-        const order={user:loggedInUser._id,item:cartItems,address:selectedAddress,paymentMode:selectedPaymentMethod,total:orderTotal+SHIPPING+TAXES}
+        const targetAddress = selectedAddress || addresses?.[0]
+        if(!targetAddress){
+            toast.error("Please add and select a delivery address")
+            return
+        }
+        const order={
+            user:loggedInUser._id,
+            item:cartItems,
+            address: Array.isArray(targetAddress) ? targetAddress : [targetAddress],
+            paymentMode:selectedPaymentMethod,
+            total: Number((orderTotal+SHIPPING+TAXES).toFixed(2))
+        }
         dispatch(createOrderAsync(order))
     }
 

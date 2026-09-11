@@ -42,7 +42,7 @@ export const Signup = () => {
   
   useEffect(()=>{
     if(status==='fullfilled'){
-      toast.success("Welcome! Verify your email to start shopping on mern-ecommerce.")
+      toast.success("Welcome to MedQuick! Your account has been created.")
       reset()
     }
     return ()=>{
@@ -73,9 +73,9 @@ export const Signup = () => {
         <Stack flex={1} justifyContent={'center'} alignItems={'center'}>
 
               <Stack flexDirection={'row'} justifyContent={'center'} alignItems={'center'}>
-                  <Stack rowGap={'.4rem'}>
-                    <Typography variant='h2' sx={{wordBreak:"break-word"}} fontWeight={600}>Mern Shop</Typography>
-                    <Typography alignSelf={'flex-end'} color={'GrayText'} variant='body2'>- Shop Anything</Typography>
+                  <Stack rowGap={'.4rem'} alignItems="center">
+                    <Typography variant='h2' sx={{wordBreak:"break-word", color: "#0f766e"}} fontWeight={800}>MedQuick</Typography>
+                    <Typography color={'text.secondary'} variant='body2'>Join 24/7 Healthcare Delivery</Typography>
                   </Stack>
 
               </Stack>

@@ -20,15 +20,25 @@ exports.getAll = async (req, res) => {
         let limit=0
 
         if(req.query.brand){
-            filter.brand={$in:req.query.brand}
+            filter.brand={$in:Array.isArray(req.query.brand)?req.query.brand:[req.query.brand]}
         }
 
         if(req.query.category){
-            filter.category={$in:req.query.category}
+            filter.category={$in:Array.isArray(req.query.category)?req.query.category:[req.query.category]}
         }
 
         if(req.query.user){
             filter['isDeleted']=false
+        }
+
+        if(req.query.search && req.query.search.trim() !== ''){
+            const searchRegex = new RegExp(req.query.search.trim(), 'i')
+            filter.$or = [
+                { title: { $regex: searchRegex } },
+                { description: { $regex: searchRegex } },
+                { manufacturer: { $regex: searchRegex } },
+                { medicineType: { $regex: searchRegex } }
+            ]
         }
 
         if(req.query.sort){
@@ -36,16 +46,19 @@ exports.getAll = async (req, res) => {
         }
 
         if(req.query.page && req.query.limit){
-
-            const pageSize=req.query.limit
-            const page=req.query.page
+            const pageSize=parseInt(req.query.limit)
+            const page=parseInt(req.query.page)
 
             skip=pageSize*(page-1)
             limit=pageSize
         }
 
-        const totalDocs=await Product.find(filter).sort(sort).populate("brand").countDocuments().exec()
-        const results=await Product.find(filter).sort(sort).populate("brand").skip(skip).limit(limit).exec()
+        const totalDocs=await Product.find(filter).countDocuments().exec()
+        let query=Product.find(filter).sort(sort).populate("brand").populate("category")
+        if(limit > 0){
+            query=query.skip(skip).limit(limit)
+        }
+        const results=await query.exec()
 
         res.set("X-Total-Count",totalDocs)
 

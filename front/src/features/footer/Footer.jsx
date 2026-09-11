@@ -1,96 +1,119 @@
 import { Box, IconButton, TextField, Typography, useMediaQuery, useTheme } from '@mui/material'
 import { Stack } from '@mui/material'
 import React from 'react'
-import { QRCodePng, appStorePng, googlePlayPng ,facebookPng,instagramPng,twitterPng,linkedinPng} from '../../assets'
 import SendIcon from '@mui/icons-material/Send';
+import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
+import PhoneInTalkIcon from '@mui/icons-material/PhoneInTalk';
+import EmailIcon from '@mui/icons-material/Email';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { MotionConfig, motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
-
-
 export const Footer = () => {
+    const theme = useTheme()
+    const is700 = useMediaQuery(theme.breakpoints.down(700))
 
-    const theme=useTheme()
-    const is700=useMediaQuery(theme.breakpoints.down(700))
-
-    const labelStyles={
-        fontWeight:300,
-        cursor:'pointer'
+    const labelStyles = {
+        fontWeight: 300,
+        cursor: 'pointer',
+        fontSize: '0.9rem',
+        opacity: 0.85,
+        '&:hover': { opacity: 1, textDecoration: 'underline' }
     }
 
-  return (
-    <Stack sx={{backgroundColor:theme.palette.primary.main,paddingTop:"3rem",paddingLeft:is700?"1rem":"3rem",paddingRight:is700?"1rem":"3rem",paddingBottom:"1.5rem",rowGap:"5rem",color:theme.palette.primary.light,justifyContent:"space-around"}}>
+    return (
+        <Stack sx={{
+            backgroundColor: "#0f172a",
+            paddingTop: "3rem",
+            paddingLeft: is700 ? "1.5rem" : "3.5rem",
+            paddingRight: is700 ? "1.5rem" : "3.5rem",
+            paddingBottom: "2rem",
+            rowGap: "3rem",
+            color: "#f8fafc",
+            borderTop: "4px solid #0f766e"
+        }}>
+            {/* upper section */}
+            <Stack flexDirection={'row'} rowGap={'2rem'} justifyContent={is700 ? "flex-start" : 'space-between'} flexWrap={'wrap'}>
 
-            {/* upper */}
-            <Stack flexDirection={'row'} rowGap={'1rem'} justifyContent={is700?"":'space-around'} flexWrap={'wrap'}>
-
-                <Stack rowGap={'1rem'} padding={'1rem'}>
-                    <Typography variant='h6' fontSize={'1.5rem'}>Exclusive</Typography>
-                    <Typography variant='h6'>Subscribe</Typography>
-                    <Typography sx={labelStyles}>Get 10% off your first order</Typography>
-                    <TextField placeholder='Enter your email' sx={{border:'1px solid white',borderRadius:"6px"}} InputProps={{endAdornment:<IconButton><SendIcon sx={{color:theme.palette.primary.light}}/></IconButton>,style:{color:"whitesmoke"}}}/>
-                </Stack>
-
-                <Stack rowGap={'1rem'} padding={'1rem'}>
-                    <Typography variant='h6'>Support</Typography>
-                    <Typography sx={labelStyles}>11th Main Street, Dhaka,  DH 1515, California.</Typography>
-                    <Typography sx={labelStyles}>exclusive@gmail.com</Typography>
-                    <Typography sx={labelStyles}>+88015-88888-9999</Typography>
-                </Stack>
-
-                <Stack rowGap={'1rem'} padding={'1rem'}>
-                    <Typography  variant='h6'>Account</Typography>
-                    <Typography sx={labelStyles}>My Account</Typography>
-                    <Typography sx={labelStyles}>Login / Register</Typography>
-                    <Typography sx={labelStyles}>Cart</Typography>
-                    <Typography sx={labelStyles}>Wishlist</Typography>
-                    <Typography sx={labelStyles}>Shop</Typography>
-                </Stack>
-
-                <Stack rowGap={'1rem'} padding={'1rem'}>
-                    <Typography  variant='h6'>Quick Links</Typography>
-                    <Typography sx={labelStyles}>Privacy Policy</Typography>
-                    <Typography sx={labelStyles}>Terms Of Use</Typography>
-                    <Typography sx={labelStyles}>FAQ</Typography>
-                    <Typography sx={labelStyles}>Contact</Typography>
-                </Stack>
-
-                <Stack rowGap={'1rem'} padding={'1rem'}>
-                    <Typography  variant='h6'>Download App</Typography>
-                    <Typography sx={{...labelStyles,color:"graytext",fontWeight:500}}>Save $3 with App New User Only</Typography>
-                    <Stack flexDirection={'row'} columnGap={'.5rem'}>
-
-                        <Box width={'100px'} height={"100px"}>
-                            <img src={QRCodePng} height={'100%'} width={'100%'} style={{objectFit:'contain'}} alt="QR Code"/>
+                {/* MedQuick info & Emergency Hotline */}
+                <Stack rowGap={'1rem'} padding={'0.5rem'} maxWidth="320px">
+                    <Stack flexDirection="row" alignItems="center" columnGap={1}>
+                        <Box sx={{ bgcolor: "#0f766e", color: "white", p: 0.8, borderRadius: "8px" }}>
+                            <LocalHospitalIcon sx={{ fontSize: 22 }} />
                         </Box>
-
-                        <Stack justifyContent={'space-around'}>
-                            <Stack>
-                                <img style={{width:"100%",height:"100%",cursor:"pointer"}} src={googlePlayPng} alt="GooglePlay" />
-                            </Stack>
-                            <Stack>
-                                <img style={{width:"100%",height:'100%',cursor:"pointer"}} src={appStorePng} alt="AppStore" />
-                            </Stack>
+                        <Typography variant='h5' fontWeight={800} color="#2dd4bf">MedQuick</Typography>
+                    </Stack>
+                    <Typography variant='body2' sx={{ opacity: 0.85, lineHeight: 1.6 }}>
+                        Your trusted 24/7 online pharmacy and emergency medical essentials delivery platform. Express delivery within 20 minutes.
+                    </Typography>
+                    <Stack sx={{ bgcolor: "rgba(15, 118, 110, 0.2)", border: "1px solid #0f766e", p: 1.5, borderRadius: "8px" }} spacing={0.5}>
+                        <Typography variant="caption" color="#2dd4bf" fontWeight={700}>24/7 EMERGENCY PHARMACY HELPLINE</Typography>
+                        <Stack flexDirection="row" alignItems="center" columnGap={1}>
+                            <PhoneInTalkIcon sx={{ fontSize: 18, color: "#2dd4bf" }} />
+                            <Typography variant="subtitle2" fontWeight={700}>1800-MED-QUICK (633-784)</Typography>
                         </Stack>
                     </Stack>
-
-                    <Stack mt={.6} flexDirection={'row'} columnGap={'2rem'}>
-                        <MotionConfig whileHover={{scale:1.1}} whileTap={{scale:1}}>
-                            <motion.img style={{cursor:"pointer"}} src={facebookPng} alt="Facebook" />
-                            <motion.img style={{cursor:"pointer"}} src={twitterPng} alt="Twitter" />
-                            <motion.img style={{cursor:"pointer"}} src={instagramPng} alt="Instagram" />
-                            <motion.img style={{cursor:"pointer"}} src={linkedinPng} alt="Linkedin" />
-                        </MotionConfig>
-                    </Stack>
                 </Stack>
 
+                {/* Contact & Support */}
+                <Stack rowGap={'0.8rem'} padding={'0.5rem'}>
+                    <Typography variant='subtitle1' fontWeight={700} color="#2dd4bf">Pharmacy Support</Typography>
+                    <Stack flexDirection="row" alignItems="center" columnGap={1}>
+                        <LocationOnIcon sx={{ fontSize: 16, color: "#94a3b8" }} />
+                        <Typography sx={{ fontSize: '0.85rem', opacity: 0.85 }}>Healthcare Hub, Sector 62, Noida, India</Typography>
+                    </Stack>
+                    <Stack flexDirection="row" alignItems="center" columnGap={1}>
+                        <EmailIcon sx={{ fontSize: 16, color: "#94a3b8" }} />
+                        <Typography sx={{ fontSize: '0.85rem', opacity: 0.85 }}>support@medquick.com</Typography>
+                    </Stack>
+                    <Typography sx={{ fontSize: '0.85rem', opacity: 0.85 }}>Licensed Pharmacy Reg: DL-MED-2026-8891</Typography>
+                </Stack>
+
+                {/* Healthcare Categories */}
+                <Stack rowGap={'0.6rem'} padding={'0.5rem'}>
+                    <Typography variant='subtitle1' fontWeight={700} color="#2dd4bf">Healthcare</Typography>
+                    <Typography sx={labelStyles}>Prescription Medicines</Typography>
+                    <Typography sx={labelStyles}>Emergency First Aid</Typography>
+                    <Typography sx={labelStyles}>Medical Health Devices</Typography>
+                    <Typography sx={labelStyles}>Daily Wellness & Care</Typography>
+                    <Typography sx={labelStyles}>Baby Health & Essentials</Typography>
+                </Stack>
+
+                {/* Account & Quick Links */}
+                <Stack rowGap={'0.6rem'} padding={'0.5rem'}>
+                    <Typography variant='subtitle1' fontWeight={700} color="#2dd4bf">Customer Links</Typography>
+                    <Typography sx={labelStyles} component={Link} to="/orders" color="inherit">My Orders</Typography>
+                    <Typography sx={labelStyles} component={Link} to="/wishlist" color="inherit">Saved Items</Typography>
+                    <Typography sx={labelStyles} component={Link} to="/profile" color="inherit">Delivery Addresses</Typography>
+                    <Typography sx={labelStyles}>Prescription Guidelines</Typography>
+                    <Typography sx={labelStyles}>Privacy & Safety Policy</Typography>
+                </Stack>
+
+                {/* Newsletter */}
+                <Stack rowGap={'0.8rem'} padding={'0.5rem'} maxWidth="280px">
+                    <Typography variant='subtitle1' fontWeight={700} color="#2dd4bf">Health Updates</Typography>
+                    <Typography variant="caption" sx={{ opacity: 0.85 }}>Subscribe for seasonal health alerts and medicine discounts.</Typography>
+                    <TextField
+                        size="small"
+                        placeholder='Enter your email'
+                        sx={{ bgcolor: "rgba(255,255,255,0.08)", borderRadius: "6px", input: { color: "white" } }}
+                        InputProps={{
+                            endAdornment: (
+                                <IconButton size="small">
+                                    <SendIcon sx={{ color: "#2dd4bf", fontSize: 18 }} />
+                                </IconButton>
+                            )
+                        }}
+                    />
+                </Stack>
             </Stack>
 
-            {/* lower */}
-            <Stack alignSelf={"center"}>
-                <Typography color={'GrayText'}>&copy; Mern Store {new Date().getFullYear()}. All right reserved</Typography>
+            {/* lower copyright */}
+            <Stack alignSelf={"center"} pt={2} borderTop="1px solid rgba(255,255,255,0.1)" width="100%" alignItems="center">
+                <Typography variant="caption" color='#94a3b8'>
+                    &copy; {new Date().getFullYear()} MedQuick – Medicine & Emergency Essentials Delivery Platform. All rights reserved.
+                </Typography>
             </Stack>
-
-    </Stack>
-  )
+        </Stack>
+    )
 }
