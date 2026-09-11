@@ -16,3 +16,11 @@ export const updateUserById=async(update)=>{
         throw error.response.data
     }
 }
+export const fetchAllUsers=async()=>{
+    try {
+        const res=await axiosi.get('/users')
+        return res.data
+    } catch (error) {
+        throw error.response.data
+    }
+}

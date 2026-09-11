@@ -1,30 +1,42 @@
 const User = require("../models/User");
-
-const users = [
-  {
-    _id: "65b8e564ea5ce114184ccb96",
-    name: "demo user",
-    email: "demo@gmail.com",
-    password:'$2a$10$GH8p5cAsGFEdYsLaSfTQ3e1eUs7KbLmVBltjbX4DDCj2eyO2KW/Ze',
-    isVerified: true,
-    isAdmin: false,
-    __v: 0,
-  },
-  {
-    _id: "65c2526fdcd9253acfbaa731",
-    name: "rishibakshi",
-    email: "demo2@gmail.com",
-    password: '$2a$10$tosjkprqtomSah0VJNyKi.TIv1JU65pl1i1IJ6wUttjYw.ENF99jG',
-    isVerified: true,
-    isAdmin: false,
-    __v: 0,
-  },
-];
+const bcrypt = require("bcryptjs");
 
 exports.seedUser = async () => {
   try {
+    await User.deleteMany({});
+
+    const adminPassword = await bcrypt.hash("Admin@1234", 10);
+    const customerPassword = await bcrypt.hash("Customer@1234", 10);
+
+    const users = [
+      {
+        _id: "65b8e564ea5ce114184ccb90",
+        name: "MedQuick Admin",
+        email: "admin@medquick.com",
+        password: adminPassword,
+        isVerified: true,
+        isAdmin: true,
+      },
+      {
+        _id: "65b8e564ea5ce114184ccb96",
+        name: "Demo Customer",
+        email: "customer@medquick.com",
+        password: customerPassword,
+        isVerified: true,
+        isAdmin: false,
+      },
+      {
+        _id: "65c2526fdcd9253acfbaa731",
+        name: "Rahul Sharma",
+        email: "rahul.sharma@example.com",
+        password: customerPassword,
+        isVerified: true,
+        isAdmin: false,
+      }
+    ];
+
     await User.insertMany(users);
-    console.log("User seeded successfully");
+    console.log("Users seeded successfully (Admin: admin@medquick.com / Admin@1234, Customer: customer@medquick.com / Customer@1234)");
   } catch (error) {
     console.log(error);
   }

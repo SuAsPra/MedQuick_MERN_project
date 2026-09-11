@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getOrderByUserIdAsync, resetOrderFetchStatus, selectOrderFetchStatus, selectOrders } from '../OrderSlice'
 import { selectLoggedInUser } from '../../auth/AuthSlice'
-import { Button, IconButton, Paper, Stack, Typography, useMediaQuery, useTheme } from '@mui/material'
+import { Button, Chip, IconButton, Paper, Stack, Typography, useMediaQuery, useTheme } from '@mui/material'
 import {Link} from 'react-router-dom'
 import { addToCartAsync, resetCartItemAddStatus, selectCartItemAddStatus, selectCartItems } from '../../cart/CartSlice'
 import Lottie from 'lottie-react'
@@ -145,21 +145,23 @@ export const UserOrders = () => {
 
                                                         <Stack flexDirection={'row'} justifyContent={'space-between'}>
                                                             <Stack>
-                                                                <Typography variant='h6' fontSize={'1rem'} fontWeight={500}>{product.product.title}</Typography>
-                                                                <Typography variant='body1'  fontSize={'.9rem'}  color={'text.secondary'}>{product.product.brand.name}</Typography>
-                                                                <Typography color={'text.secondary'} fontSize={'.9rem'}>Qty: {product.quantity}</Typography>
+                                                                <Typography variant='h6' fontSize={'1rem'} fontWeight={600}>{product.product?.title}</Typography>
+                                                                <Typography variant='body2' fontSize={'.85rem'} color={'primary.main'}>
+                                                                    {typeof product.product?.brand === 'object' ? product.product?.brand?.name : product.product?.brand}
+                                                                </Typography>
+                                                                <Typography color={'text.secondary'} fontSize={'.85rem'}>Qty: {product.quantity}</Typography>
                                                             </Stack>
-                                                            <Typography>${product.product.price}</Typography>
+                                                            <Typography fontWeight={700}>${product.product?.price}</Typography>
                                                         </Stack>
 
-                                                        <Typography color={'text.secondary'}>{product.product.description}</Typography>
+                                                        <Typography color={'text.secondary'} fontSize="0.85rem">{product.product?.description}</Typography>
 
-                                                        <Stack mt={2} alignSelf={is480?"flex-start":'flex-end'} flexDirection={'row'} columnGap={2} >
-                                                            <Button size='small' component={Link} to={`/product-details/${product.product._id}`} variant='outlined'>View Product</Button>
+                                                        <Stack mt={1} alignSelf={is480?"flex-start":'flex-end'} flexDirection={'row'} columnGap={2} >
+                                                            <Button size='small' component={Link} to={`/product-details/${product.product?._id}`} variant='outlined'>View Product</Button>
                                                             {
-                                                                cartItems.some((cartItem)=>cartItem.product._id===product.product._id)?
-                                                                <Button  size='small' variant='contained' component={Link} to={"/cart"}>Already in Cart</Button>
-                                                                :<Button  size='small' variant='contained' onClick={()=>handleAddToCart(product.product)}>Buy Again</Button>
+                                                                cartItems.some((cartItem)=>cartItem.product?._id===product.product?._id)?
+                                                                <Button size='small' variant='contained' component={Link} to={"/cart"}>In Cart</Button>
+                                                                :<Button size='small' variant='contained' onClick={()=>handleAddToCart(product.product)} sx={{ bgcolor: "#0f766e", '&:hover': { bgcolor: "#115e59" } }}>Reorder</Button>
                                                             }
                                                         </Stack>
 
@@ -174,8 +176,14 @@ export const UserOrders = () => {
                                     </Stack>
 
                                     {/* lower */}
-                                    <Stack mt={2} flexDirection={'row'} justifyContent={'space-between'}>
-                                        <Typography mb={2}>Status : {order.status}</Typography>
+                                    <Stack mt={2} flexDirection={'row'} justifyContent={'space-between'} alignItems="center">
+                                        <Typography variant="body2" color="text.secondary">Delivery Status:</Typography>
+                                        <Chip
+                                            label={order.status}
+                                            size="small"
+                                            color={order.status === 'Delivered' ? 'success' : order.status === 'Cancelled' ? 'error' : 'primary'}
+                                            sx={{ fontWeight: 700 }}
+                                        />
                                     </Stack>
                                         
                                 </Stack>

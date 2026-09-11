@@ -40,6 +40,25 @@ const productSchema= new Schema({
         type:[String],
         required:true
     },
+    requiresPrescription:{
+        type:Boolean,
+        default:false
+    },
+    manufacturer:{
+        type:String,
+        default:""
+    },
+    expiryDate:{
+        type:Date
+    },
+    dosage:{
+        type:String,
+        default:""
+    },
+    medicineType:{
+        type:String,
+        default:""
+    },
     isDeleted:{
         type:Boolean,
         default:false
