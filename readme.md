@@ -2,420 +2,660 @@
 
 ## Project Overview
 
-MedQuick is a MERN stack web application designed to provide users with a fast, reliable, and user-friendly platform for purchasing medicines and emergency essentials online. The platform enables customers to browse products, manage prescriptions, place orders, and track deliveries, while administrators can efficiently manage inventory, categories, and customer orders.
+MedQuick is a MERN stack web application for purchasing medicines and emergency healthcare essentials online. Customers can browse and search products, manage carts and wishlists, place orders, track order status, manage addresses, and submit reviews. Administrators can manage products, categories, inventory, customers, and orders.
 
----
+The current V1 is a **modular monolithic application** using a three-tier architecture: **Presentation → Application → Data**.
 
-# Problem it Solves
+## Problem Statement
 
-Traditional medicine purchasing can be time-consuming, especially during emergencies. Many users face difficulties in locating nearby pharmacies with the required medicines or ordering essential healthcare products quickly.
+Traditional medicine purchasing can be time-consuming, especially during emergencies. MedQuick provides centralized product discovery, keyword search, category and brand filtering, secure authentication, order placement, tracking, and inventory management.
 
-MedQuick addresses these issues by providing:
-
-* A centralized online medicine store
-* Easy product discovery
-* Secure order placement
-* Efficient inventory management
-* Prescription-based medicine support
-
----
-
-# Screenshots
-
-## 1. GitHub Repository
-![GitHub Repository](images/image-1.png)
-
-## 2. GitHub Branches
-![GitHub Branches](images/image.png)
-
-## 3. GitHub Project Board (Kanban)
-![GitHub Project Board](images/image-2.png)
-
-## 4. ER Diagram (StarUML)
-![ER Diagram](images/image-3.png)
-
-## 5. Use Case Diagram (StarUML)
-![Use Case Diagram](images/image-4.png)
-
-## 6. Class Diagram (StarUML)
-![Class Diagram](images/image-5.png)
-
-## 7. Architecture Diagram (Draw.io)
-![Architecture Diagram](images/MedQuick_Architecture-1.png)
-
-## 8. Docker Desktop
-![Docker Desktop](images/image-7.png)
-
-## 9. Docker Build & Run (Terminal)
-![Docker Terminal](images/image-6.png)
-
-## 10. Running Web App
-![Web App](images/image10.png)
-# Target Users (Personas)
+## Target Users
 
 ### Customer
-
-* Purchase medicines and healthcare products
-* Search and filter products
-* Manage cart and orders
-* Track deliveries
+- Register and log in
+- Browse, search and filter healthcare products
+- View product details and prescription requirements
+- Manage cart, wishlist and addresses
+- Place and track orders
+- View order history
+- Submit product reviews
 
 ### Administrator
+- Manage products and categories
+- Manage inventory
+- Manage customer records
+- Manage customer orders
+- View prescription verification information
 
-* Manage products
-* Manage inventory
-* Process customer orders
-* Monitor platform activity
+## Vision Statement
 
----
+To provide a reliable, accessible, and efficient digital healthcare marketplace that simplifies medicine purchasing while ensuring a seamless experience for customers and administrators.
 
-# Vision Statement
+## Key Features
 
-To provide a reliable, accessible, and efficient digital healthcare marketplace that simplifies medicine purchasing while ensuring a seamless experience for both customers and administrators.
+- User registration and login
+- Product browsing, search and filtering
+- Product details
+- Shopping cart and wishlist
+- Address management and checkout
+- Order management, history and tracking
+- Product reviews
+- Prescription-required medicine indicator
+- Manufacturer, expiry date, dosage and medicine type
+- Admin product, category, inventory, customer and order management
+- Prescription verification dashboard placeholder
 
----
+## Healthcare Categories
 
-# Key Features / Goals
+1. Medicines
+2. First Aid
+3. Emergency Supplies
+4. Health Devices
+5. Personal Care
+6. Baby Care
+7. Wellness
+8. Daily Essentials
 
-* User Registration & Login
-* Product Browsing
-* Product Search & Filtering
-* Shopping Cart
-* Wishlist
-* Secure Checkout
-* Order Management
-* Prescription Verification (Placeholder)
-* Customer Dashboard
-* Admin Dashboard
-* Inventory Management
-* Product Reviews
+## Success Metrics
 
----
+- Successful user authentication
+- Accurate product management
+- Smooth cart and checkout flow
+- Successful order placement
+- Responsive user interface
+- Efficient inventory management
+- Secure API communication
+- Stable application execution
 
-# Success Metrics
+## Assumptions & Constraints
 
-The project will be considered successful if it achieves:
+### Assumptions
+- Users have internet access.
+- MongoDB is available.
+- Customers provide accurate account information.
+- Prescription verification is a placeholder in the current V1.
+- The project is primarily academic and demonstrational.
 
-* Successful user authentication
-* Accurate product management
-* Smooth shopping cart functionality
-* Successful order placement
-* Responsive user interface
-* Efficient inventory management
-* Secure API communication
-* Stable deployment
-
----
-
-# Assumptions & Constraints
-
-## Assumptions
-
-* Users have internet access.
-* MongoDB Atlas remains available.
-* Customers provide accurate account information.
-* Prescription verification is implemented as a placeholder for this phase.
-
-## Constraints
-
-* Developed using the MERN stack.
-* Docker used for local development.
-* Limited to educational purposes.
-* Uses free-tier deployment services (Vercel, Render, MongoDB Atlas).
-
----
+### Constraints
+- MERN stack implementation.
+- Docker used for local development.
+- Current V1 is a modular monolith.
+- OCR, real-time GPS tracking, online payment gateway, Redis and microservices are future enhancements unless separately implemented.
 
 # Technology Stack
 
-## Frontend
+### Frontend
+- React.js
+- Material UI
+- Redux Toolkit
+- Axios
 
-* React.js
-* Material UI
-* Redux Toolkit
-* Axios
+### Backend
+- Node.js
+- Express.js
+- REST API
+- JWT authentication
 
-## Backend
+### Database
+- MongoDB
+- Mongoose
 
-* Node.js
-* Express.js
+### Development Tools
+- Visual Studio Code
+- Git and GitHub
+- Docker and Docker Compose
+- Postman
+- Draw.io / diagrams.net
+- Figma
+- MongoDB Atlas
+- Node.js and npm
 
-## Database
+# Software Design
 
-* MongoDB Atlas
-* Mongoose
+MedQuick's software design focuses on abstraction, modularity, high cohesion, low coupling, separation of responsibilities, maintainability and scalability.
 
-## Containerization
+## Design Principles Applied
 
-* Docker - Containerizes frontend, backend, and MongoDB
-* Docker Compose - Orchestrates multi-container setup
-* Hot reload enabled for development
-* Volume-based persistence for database
+### Abstraction
 
----
+Frontend API communication is centralized in reusable API modules. A shared Axios client provides a common backend communication interface:
 
-# 🐳 Docker Support
-
-**MedQuick is fully containerized for easy local development!**
-
-The project includes complete Docker setup with:
-- ✅ Separate Dockerfiles for frontend and backend
-- ✅ docker-compose.yml orchestrating all services (MongoDB, Backend, Frontend)
-- ✅ Hot reload enabled for both frontend and backend
-- ✅ Database persistence across restarts
-- ✅ Easy environment configuration via .env
-
-**Get started in 3 commands:**
-```bash
-cp .env.example .env
-docker-compose up --build
-# Open http://localhost:3000
+```javascript
+export const axiosi = axios.create({
+    withCredentials: true,
+    baseURL: process.env.REACT_APP_BASE_URL
+});
 ```
 
-For full Docker documentation, see [**DOCKER_SETUP.md**](./DOCKER_SETUP.md)
+### Modularity
 
----
+The frontend uses feature-based modules such as `auth`, `products`, `cart`, `checkout`, `order`, `admin`, `user`, `address`, `wishlist`, `review`, `brands` and `categories`. The backend separates `controllers`, `models`, `routes`, `middleware`, `database` and `utils`.
 
-# Folder Structure
+### High Cohesion
+
+Modules have focused responsibilities. For example, `ProductSlice` manages product state and operations, the Order controller manages order operations, `VerifyToken` handles token verification, and `SanitizeUser` handles user-data sanitization.
+
+### Low Coupling
+
+The application follows a clear flow:
 
 ```text
-MedQuick
-│
-├── frontend                    # React frontend application
-│   ├── public
-│   ├── src
-│   ├── Dockerfile              # Frontend container image
-│   ├── .dockerignore           # Docker build exclusions
-│   └── package.json
-│
-├── backend                     # Node.js backend API
-│   ├── controllers
-│   ├── models
-│   ├── routes
-│   ├── middleware
-│   ├── database
-│   ├── seed
-│   ├── utils
-│   ├── Dockerfile              # Backend container image
-│   ├── .dockerignore           # Docker build exclusions
-│   ├── index.js
-│   └── package.json
-│
-├── docker-compose.yml          # Docker Compose configuration
-├── .env.example                # Environment variables template
-├── README.md                   # Project overview
-├── DOCKER_SETUP.md             # Detailed Docker guide
-├── requirements.md             # Software requirements
-├── MOSCOW.md                   # Project prioritization
-├── to_implement.md             # Implementation tasks
-├── user_stories.md             # User stories
-├── vision_document.md          # Project vision
-├── MedQuick_Project.mdj        # Project model
-└── .gitignore
+React UI → Redux → API Module → REST API → Controller → Mongoose → MongoDB
 ```
 
----
+This limits direct dependencies between the UI, application logic and database.
+
+## SOLID Principles
+
+- **Single Responsibility:** modules have focused responsibilities.
+- **Open/Closed:** feature modules can be extended without restructuring the whole application.
+- **Liskov Substitution:** has limited direct relevance because the application does not heavily use inheritance hierarchies.
+- **Interface Segregation:** separate API modules and Redux slices avoid large unrelated interfaces.
+- **Dependency Inversion:** frontend modules communicate through API abstractions rather than database implementation details.
+
+SOLID principles are applied pragmatically; not every principle is equally applicable to every V1 module.
+
+# High-Level Architecture
+
+MedQuick uses a three-tier architecture with a modular monolithic application structure.
+
+```text
+                    MEDQUICK SYSTEM
+                           |
+             +-------------+-------------+
+             |                           |
+     PRESENTATION LAYER          APPLICATION LAYER
+             |                           |
+       React.js UI                Node.js / Express
+       Material UI                REST API
+       Redux Toolkit              Routes / Middleware
+       Axios                      Controllers / Business Logic
+                                             |
+                                             v
+                                     DATA ACCESS LAYER
+                                             |
+                                         Mongoose
+                                             |
+                                         MongoDB
+```
+
+### Architectural Style
+
+- Three-tier architecture
+- Client-server architecture
+- RESTful API architecture
+- Modular monolithic architecture
+- Redux unidirectional data flow
+
+### Rationale
+
+The architecture provides separation of responsibilities, easier maintenance and debugging, independent frontend/backend development, reusable modules and a clear path for future service extraction. A modular monolith is appropriate for V1 because microservices would add unnecessary deployment and operational complexity at this stage.
+
+# Database Design
+
+Major MongoDB/Mongoose models include:
+
+- User
+- Product
+- Category
+- Brand
+- Order
+- Address
+- Cart
+- Wishlist
+- Review
+- OTP
+- Password Reset Token
+
+### Healthcare Product Attributes
+
+```text
+Product
+├── title
+├── description
+├── price
+├── category
+├── brand
+├── stockQuantity
+├── requiresPrescription
+├── manufacturer
+├── expiryDate
+├── dosage
+└── medicineType
+```
+
+### Order Lifecycle
+
+```text
+Pending → Confirmed → Packed → Out for Delivery → Delivered
+                                      |
+                                  Cancelled
+```
+
+# REST API Design
+
+Major resource areas include:
+
+```text
+/users
+/products
+/categories
+/brands
+/orders
+/cart
+/wishlist
+/reviews
+/addresses
+```
+
+Backend processing follows:
+
+```text
+Request → Route → Middleware → Controller → Mongoose Model → MongoDB
+```
+
+# Security Design
+
+MedQuick uses JWT-based authentication and protected routes.
+
+```text
+Client → JWT Cookie → VerifyToken Middleware → Authenticated Request → Controller
+```
+
+Security design includes JWT authentication, protected routes, admin authorization, cookie-based token handling where configured, user-data sanitization and environment-based configuration. Sensitive credentials should not be committed to GitHub.
+
+# Requirements → Design Traceability
+
+| Requirement / User Story | Design Component | Evidence |
+|---|---|---|
+| Registration and Login | Authentication module | Architecture / Class Diagram |
+| Browse products | Product module | Class / ER Diagram |
+| Search products | Product API + Controller | Architecture |
+| Category filtering | Category module | ER / Class Diagram |
+| Product details | Product module | Class Diagram |
+| Prescription indication | Healthcare product attributes | Class / ER Diagram |
+| Cart | Cart module | ER / Class Diagram |
+| Checkout | Checkout + Address + Order | Sequence Diagram |
+| Place order | Order module | Sequence / Class Diagram |
+| Track order | Order status lifecycle | Activity / Sequence Diagram |
+| Wishlist | Wishlist module | ER / Class Diagram |
+| Product reviews | Review module | ER / Class Diagram |
+| Admin products | Admin/Product modules | Architecture |
+| Inventory | Product stock management | Architecture |
+| Admin orders | Order management | Architecture |
+| Customer management | User/Admin module | Architecture |
+| Prescription verification | Admin dashboard placeholder | UI / Architecture |
+
+# UI Design
+
+The major UI screens are:
+
+1. Home
+2. Product Listing
+3. Product Details
+4. Cart & Checkout
+5. Authentication
+6. Admin Dashboard
+
+The UI emphasizes simple navigation, clear product information, search and filtering, visible prescription requirements, a clear checkout flow, responsive layouts and separate customer/admin experiences.
+
+### Figma Prototype
+
+`[Figma Prototype – link to be added]`
+
+UI screenshots are maintained in `images/` and `design/ui/`.
+
+# Design Diagrams
+
+The repository maintains editable and exported design diagrams under `design/diagrams/`.
+
+The design set includes:
+
+- Use Case Diagram
+- Class Diagram
+- ER Diagram
+- Activity Diagram
+- Sequence Diagram
+- Component Diagram
+- Deployment Diagram
+- High-Level Architecture Diagram
+
+# Maintainability
+
+Maintainability is supported through feature-based frontend organization, separated backend routes/controllers/models/middleware/utilities, centralized API communication, Redux state management, reusable UI components, environment-based configuration, REST API boundaries and Mongoose data abstraction.
+
+# Scalability
+
+The current V1 is a modular monolith.
+
+Future scaling can include:
+
+- Multiple Node.js instances
+- Load balancing
+- Stateless REST APIs
+- MongoDB Atlas replica sets
+- Index optimization and sharding when required
+- Redis caching
+- Message queues and asynchronous processing
+- Cloud-based file storage
+
+## Future Microservices
+
+Microservices are **not implemented in V1**. If the system grows, modules could be extracted into services such as:
+
+```text
+Authentication Service
+Product Service
+Inventory Service
+Order Service
+Notification Service
+```
+
+The modular monolith provides a structured starting point for future extraction.
+
+# Future Enhancements
+
+- Prescription upload
+- OCR-based prescription processing
+- Online payment gateway
+- Real-time delivery tracking
+- Notification service
+- Redis caching
+- Mobile application
+- Cloud deployment
+- Load balancing
+- Pharmacy partner integration
+- AI-powered product search
+- Microservice-based deployment
+
+These are future enhancements and are not claimed as implemented in V1.
+
+# Project Metrics
+
+| Metric | Value |
+|---|---:|
+| JavaScript / JSX source lines | 8,958 |
+| Approximate KLOC | 9 KLOC |
+| JavaScript / JSX files | 128 |
+| Healthcare categories | 8 |
+| Seed healthcare products | 16 |
+| Order lifecycle states | 6 |
+| Major healthcare product attributes | 5 |
+| Architecture | Modular Monolith |
+| Architecture layers | 3 |
+
+# Product Metrics
+
+| Metric | Value |
+|---|---:|
+| Healthcare categories | 8 |
+| Seed healthcare products | 16 |
+| Order lifecycle stages | 6 |
+| Healthcare-specific attributes | 5 |
+| Customer feature areas | Auth, Products, Cart, Checkout, Orders, Wishlist, Reviews, Address |
+| Major Admin areas | Products, Inventory, Orders, Customers, Prescription Placeholder |
+
+# Quality & Verification
+
+The implementation audit verified:
+
+- Backend verification
+- Database seed verification
+- Frontend build
+- Customer flow
+- Admin flow
+- Legacy terminology scan
+
+These verification areas were reported as passing during implementation verification. They represent project verification checks and not formal automated-test coverage percentages.
+
+# GitHub Project Management
+
+The project uses GitHub Issues and a GitHub Project Kanban board.
+
+```text
+Backlog → To Do → In Progress → Testing → Done
+```
+
+User stories are tracked through GitHub Issues and organized through the project board.
 
 # Branching Strategy
 
-This project follows the **GitHub Flow** branching strategy.
+The project follows a GitHub Flow-based strategy.
 
-## Branches
+### Branches
 
-* **main** – Stable production-ready branch.
-* **feature-suriyan** – Development branch for Suriyan.
-* **feature-sairam** – Development branch for Sairam.
+- `main` – Stable integration branch
+- `feature-sairam` – Development branch for Sairam
+- `feature-suriyan` – Development branch for Suriyan
 
 ### Workflow
 
-1. Create a feature branch from **main**.
-2. Develop features independently.
-3. Commit and push changes.
-4. Create a Pull Request.
-5. Review and merge into **main**.
+1. Create a feature branch from `main`.
+2. Develop the feature.
+3. Commit changes.
+4. Push the feature branch.
+5. Create a Pull Request where applicable.
+6. Review changes.
+7. Merge into `main`.
 
----
+# Screenshots and Evidence
+
+## GitHub Repository
+![GitHub Repository](images/image-1.png)
+
+## GitHub Branches
+![GitHub Branches](images/image.png)
+
+## GitHub Project Board
+![GitHub Project Board](images/image-2.png)
+
+## ER Diagram
+![ER Diagram](images/image-3.png)
+
+## Use Case Diagram
+![Use Case Diagram](images/image-4.png)
+
+## Class Diagram
+![Class Diagram](images/image-5.png)
+
+## Architecture Diagram
+![Architecture Diagram](images/MedQuick_Architecture-1.png)
+
+## Docker Desktop
+![Docker Desktop](images/image-7.png)
+
+## Docker Build and Run
+![Docker Terminal](images/image-6.png)
+
+## Running Web Application
+![Web Application](images/image10.png)
+
+# Docker Support
+
+MedQuick includes Docker configuration for local development with frontend, backend and MongoDB services.
+
+Features include:
+
+- Separate frontend and backend containers
+- MongoDB container
+- Docker Compose orchestration
+- Hot reload during development
+- Persistent database volume
+- Environment-based configuration
+
+## Run with Docker
+
+```bash
+cp .env.example .env
+docker-compose up --build
+```
+
+Application:
+
+```text
+http://localhost:3000
+```
+
+Backend API:
+
+```text
+http://localhost:8080
+```
+
+## Stop Services
+
+```bash
+docker-compose down
+```
+
+To remove containers and volumes:
+
+```bash
+docker-compose down -v
+```
+
+For detailed Docker documentation, see [DOCKER_SETUP.md](./DOCKER_SETUP.md).
 
 # Quick Start – Local Development
 
 ## Prerequisites
 
-* Git
-* Docker Desktop (includes Docker & Docker Compose)
-* (Optional) Node.js 18+ and npm (for local development without Docker)
+- Git
+- Docker Desktop
+- Node.js 18+ (optional when using Docker)
+- npm
+- MongoDB / MongoDB Atlas
 
 ## Clone Repository
 
 ```bash
-git clone <repository-url>
-cd medquick_mern
+git clone https://github.com/SuAsPra/MedQuick_MERN_project.git
+cd MedQuick_MERN_project
 ```
 
-## Setup with Docker (Recommended)
-
-Docker provides the easiest setup with no local Node.js installation needed.
-
-### Step 1: Create Environment File
+## Docker Setup
 
 ```bash
-# Copy the example environment file
 cp .env.example .env
-
-# Edit .env if needed (defaults work for local development)
-```
-
-### Step 2: Build and Run
-
-```bash
-# Build images and start all services
 docker-compose up --build
-
-# Services will start:
-# - Frontend at http://localhost:3000
-# - Backend API at http://localhost:8080
-# - MongoDB at localhost:27017
 ```
 
-### Step 3: Stop Services
+Open `http://localhost:3000`.
+
+# Alternative: Local Development Without Docker
+
+### Backend
 
 ```bash
-# Stop all services (keep data)
-docker-compose down
-
-# Stop and remove everything including data
-docker-compose down -v
-```
-
-## Important Docker Notes
-
-✅ **Hot Reload Enabled**
-- Backend auto-restarts when code changes (nodemon)
-- Frontend auto-refreshes on code changes (React dev server)
-
-✅ **Database Persistence**
-- MongoDB data persists in volume even after `docker-compose down`
-
-✅ **Inter-service Communication**
-- Backend connects to MongoDB automatically
-- Frontend connects to backend automatically
-
-## Detailed Docker Setup Guide
-
-For comprehensive Docker documentation including:
-- How each file works
-- Detailed service configuration
-- 20+ commands reference
-- Troubleshooting guide
-- Production conversion steps
-
-See [**DOCKER_SETUP.md**](./DOCKER_SETUP.md)
-
-## Alternative: Local Development (Without Docker)
-
-If you prefer local development without Docker:
-
-### Prerequisites
-* Node.js 18+
-* npm or yarn
-* MongoDB (local or Atlas URI)
-
-### Steps
-
-```bash
-# Backend setup
-cd backend
+cd back
 npm install
-# Create .env file with:
-# MONGO_URI=mongodb://localhost:27017/medquick
-# ORIGIN=http://localhost:3000
-# JWT_SECRET=your-secret-key
-# EMAIL_HOST=smtp.gmail.com
-# EMAIL_PORT=587
-# EMAIL_USER=your-email@gmail.com
-# EMAIL_PASSWORD=your-password
 npm run dev
+```
 
-# Frontend setup (new terminal)
-cd frontend
+### Frontend
+
+In another terminal:
+
+```bash
+cd front
 npm install
-# Create .env file with:
-# REACT_APP_API_BASE_URL=http://localhost:8080
 npm start
 ```
 
-## Database Seeding
+# Database Seeding
 
-To populate the database with sample healthcare products and categories:
+With Docker:
 
 ```bash
-# With Docker
 docker-compose exec backend npm run seed
-
-# Without Docker (from backend directory)
-npm run seed
 ```
 
-## Useful Commands
+Without Docker, run the project's seed command from the backend setup.
+
+# Useful Docker Commands
 
 | Command | Purpose |
-|---------|---------|
+|---|---|
 | `docker-compose up -d` | Start services in background |
+| `docker-compose up --build` | Build and start services |
 | `docker-compose ps` | List running containers |
 | `docker-compose logs -f` | View real-time logs |
-| `docker-compose logs -f backend` | View backend logs only |
-| `docker-compose stop` | Stop all services |
+| `docker-compose logs -f backend` | View backend logs |
+| `docker-compose stop` | Stop services |
 | `docker-compose down` | Stop and remove containers |
-| `docker-compose down -v` | Stop and remove everything including data |
-| `docker-compose exec backend sh` | Open shell in backend container |
+| `docker-compose down -v` | Stop containers and remove volumes |
+| `docker-compose exec backend sh` | Open backend container shell |
 
-or
+# Environment Configuration
 
-```bash
-docker-compose up
+Environment variables are configured using `.env`. A template is provided in `.env.example`. Sensitive credentials should not be committed to GitHub.
+
+# Repository Structure
+
+```text
+MedQuick_MERN_project/
+│
+├── front/                     # React frontend
+│   ├── public/
+│   ├── src/
+│   │   ├── features/
+│   │   ├── components/
+│   │   └── app/
+│   └── package.json
+│
+├── back/                      # Node.js / Express backend
+│   ├── controllers/
+│   ├── models/
+│   ├── routes/
+│   ├── middleware/
+│   ├── database/
+│   ├── utils/
+│   └── index.js
+│
+├── design/
+│   ├── diagrams/
+│   │   ├── architeture/
+│   │   └── uml/
+│   ├── estimation/
+│   ├── readme/
+│   └── ui/
+│
+├── images/
+├── docker-compose.yml
+├── DOCKER_SETUP.md
+├── .env.example
+├── requirements.md
+├── user_stories.md
+├── MOSCOW.md
+├── vision_document.md
+└── README.md
 ```
 
-The application will be available at:
+# Project Documentation
 
-```
-http://localhost:3000
-```
-
----
-
-# Local Development Tools
-
-* Visual Studio Code
-* Git
-* GitHub
-* Docker Desktop
-* Node.js
-* npm
-* MongoDB Atlas
-* Postman
-* Draw.io
-* Figma
-
----
+- [Requirements](requirements.md)
+- [User Stories](user_stories.md)
+- [MoSCoW Prioritization](MOSCOW.md)
+- [Vision Document](vision_document.md)
+- [Docker Setup](DOCKER_SETUP.md)
+- [Software Design](design/README.md)
 
 # Repository
 
-GitHub Repository:
-
-**https://github.com/SuAsPra/MedQuick_MERN_project**
-
----
-
-## GitHub Project Board
-
-The project uses a GitHub Project (Kanban Board) to manage development tasks.
-
-Workflow:
-
-Backlog → To Do → In Progress → Testing → Done
-
-All user stories were created as GitHub Issues and managed through the GitHub Project board following an Agile Kanban workflow.
-
+[MedQuick_MERN_project](https://github.com/SuAsPra/MedQuick_MERN_project)
 
 # Contributors
 
-* Suriyan
-* Sairam
+- **Sairam**
+- **Suriyan**
+
+# Project Status
+
+**V1 Development / Academic Project**
+
+The current version focuses on the core medicine and emergency essentials delivery workflow. Advanced capabilities such as OCR prescription processing, real-time GPS tracking, online payment gateway integration, Redis, microservices and large-scale cloud deployment are future enhancements.
+
+# License
+
+This project is developed for academic and educational purposes.
